@@ -1,8 +1,6 @@
-from tokenize import Double
 from OpenGL.GL import *
 
-class Line:
-    
+class Line:    
     def __init__(self,x1,y1,x2,y2):
         self.x1 = x1
         self.y1 = y1
@@ -64,7 +62,6 @@ class Line:
                     self.x1 += 1
                 elif self.dx < 0:
                     self.x1 -= 1
-
         else:
             p0 = 2*abs(self.dx) -abs(self.dy)
             while self.x1 != self.x2 or self.y1 != self.y2:

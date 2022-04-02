@@ -26,15 +26,11 @@ class Piechart:
 
     def rotate(self,angle):
         if angle == 0 or angle == 360:
-            print('sad')
             return
-            
         else:
-            print('aali')
             l = Line(0,0,self.end_x,self.end_y)
             l.dda()
             tempx = self.end_x
             tempy = self.end_y
-            print(self.end_x,self.end_y)
             self.end_x = round(cos(radians(angle))* tempx- sin(radians(angle))*tempy)
             self.end_y = round(sin(radians(angle)) * tempx + cos(radians(angle))*tempy)

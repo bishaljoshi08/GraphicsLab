@@ -5,7 +5,6 @@ class Circle:
         self.center_x = center_x
         self.center_y = center_y
         self.radius = radius
-        
 
     def mid_point(self):
         self.x = 0
@@ -37,4 +36,3 @@ class Circle:
         self.add_center(-1*self.y, self.x)
         self.add_center(self.y, -1*self.x)
         self.add_center(-1*self.y,-1*self.x)
-

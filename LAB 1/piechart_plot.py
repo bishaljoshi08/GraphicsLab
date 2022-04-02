@@ -5,7 +5,6 @@ from OpenGL.GLU import *
 
 from piechart import Piechart
 
-
 def clearScreen():
     glClearColor(0.0, 0.0, 0.0, 1.0)
     gluOrtho2D(-150.0, 150.0,-150.0,150.0)
@@ -15,12 +14,9 @@ def plot_points():
     glColor3f(0.0,1.0,0.0)
     glPointSize(3.0)
     glBegin(GL_POINTS)
-    
     Piechart().circle(degreelist)
-
     glEnd()
     glFlush()
-
 
 inp = input("Give the frequency number")
 inplist = [int(i) for i in inp.split()]
