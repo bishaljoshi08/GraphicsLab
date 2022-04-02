@@ -1,6 +1,5 @@
-from mimetypes import init
-import sys
-
+from tokenize import Double
+from OpenGL.GL import *
 
 class Line:
     
@@ -13,14 +12,14 @@ class Line:
     def slope(self):
         self.dx = self.x2 - self.x1
         self.dy = self.y2 - self.y1
-        self.m = abs(self.dy/self.dx) if self.dx != 0 else 100 #consider 100 as infinity you can also use sys.maxsize
-
+        self.m = abs((self.dy)/(self.dx)) if self.dx != 0 else 100 #consider 100 as infinity you can also use sys.maxsize
+    
     def dda(self):
         self.slope()
         roundx1 = self.x1
         roundy1 = self.y1
         while roundx1 != self.x2 or roundy1 != self.y2:
-            print(roundx1,roundy1)
+            glVertex2f(roundx1,roundy1)
             if self.m < 1:
                 if self.dx < 0:
                     self.x1 -= 1
@@ -29,26 +28,30 @@ class Line:
                 if self.dy <= 0:
                     self.y1 -= self.m 
                 elif self.dy>0:
-                    self.y2 += self.m
+                    self.y1 += self.m
+               
             else:
                 if self.dy < 0:
                     self.y1 -= 1
                 elif self.dy > 0:
                     self.y1 += 1
-                if self.dx <= 0:
-                    self.x1 -= 1/self.m
-                elif self.dx > 0:
-                    self.x1 += 1/self.m
-            roundx1 = round(self.x1)
-            roundy1 = round(self.y1)
-        print(roundx1,roundy1)
+                if self.dx != 0:
+                    if self.dx <= 0:
+                        self.x1 -= 1/self.m
+                    elif self.dx > 0:
+                        self.x1 += 1/self.m
+            x = self.x1
+            y = self.y1
+            roundx1 = round(x)
+            roundy1 = round(y)
+        glVertex2f(roundx1,roundy1)
 
-    def beshenham(self):
+    def bresenham(self):
         self.slope()
         if self.m < 1:
-            p0 = 2 * self.dy - self.dx
+            p0 = 2 * abs(self.dy) - abs(self.dx)
             while self.x1 != self.x2 or self.y1 != self.y2:
-                print(self.x1,self.y1)
+                glVertex2f(self.x1,self.y1)
                 if p0 < 0:
                     p0 =p0 + abs(2*self.dy)
                 else:
@@ -63,8 +66,9 @@ class Line:
                     self.x1 -= 1
 
         else:
-            p0 = 2*self.dx -self.dy
+            p0 = 2*abs(self.dx) -abs(self.dy)
             while self.x1 != self.x2 or self.y1 != self.y2:
+                glVertex2f(self.x1,self.y1)
                 if p0 < 0:
                     p0 =p0 + abs(2*self.dx)
                 else:
@@ -77,9 +81,4 @@ class Line:
                     self.y1 += 1
                 elif self.dy < 0:
                     self.y1 -= 1
-        print(self.x1,self.y1)
-
-
-a = Line(30,20,0,20)
-a.beshenham()
-
+        glVertex2f(self.x1,self.y1)
