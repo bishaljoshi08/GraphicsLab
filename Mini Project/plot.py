@@ -1,3 +1,4 @@
+
 import OpenGL
 from OpenGL.GL import *
 from OpenGL.GLUT import *
@@ -5,6 +6,7 @@ from OpenGL.GLU import *
 
 from line import Line
 from pentagram import Pentagram
+from polygram import Polygram
 
 def clearScreen():
     glClearColor(0.0, 0.0, 0.0, 1.0)
@@ -13,11 +15,23 @@ def clearScreen():
 def plot_points():
     glClear(GL_COLOR_BUFFER_BIT)
     glColor3f(0.0,1.0,0.0)
-    glPointSize(5.0)
+    glPointSize(2.0)
     glBegin(GL_POINTS)
-    Pentagram(100).pentagram()
+    Polygram(100,n,k).polygram()
     glEnd()
     glFlush()
+
+
+print("Give the polygram you want to draw in the form of n/k")
+global n,k
+while(True):
+    n = int(input("n: "))
+    k = int(input("k: "))
+    print(2*k+1<n)
+    if k<1 or n<3 or 2*k +1 <= n:
+        break
+    else:
+        print('invalid format')
 
 glutInit()
 glutInitDisplayMode(GLUT_RGB)
