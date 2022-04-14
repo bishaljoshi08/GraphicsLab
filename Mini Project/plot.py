@@ -5,7 +5,6 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 
 from line import Line
-from pentagram import Pentagram
 from polygram import Polygram
 
 def clearScreen():
