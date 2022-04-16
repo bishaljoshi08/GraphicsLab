@@ -27,7 +27,7 @@ while(True):
     n = int(input("n: "))
     k = int(input("k: "))
     print(2*k+1<n)
-    if k<1 or n<3 or 2*k +1 <= n:
+    if k>1 and n>3 and 2*k +1 <= n:
         break
     else:
         print('invalid format')
