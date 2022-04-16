@@ -76,7 +76,7 @@ def draw_ellipse():
 if __name__ == '__main__':
     glutInit()
     glutInitDisplayMode(GLUT_RGB)
-    glutCreateWindow("Drawing")
+    glutCreateWindow("Ellipse (rx=70, ry=50, center=(10,10)")
     glutInitWindowSize(500, 500)
     glutInitWindowPosition(50, 50)
     glutDisplayFunc(draw_axis)
